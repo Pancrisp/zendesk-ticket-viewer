@@ -1,0 +1,20 @@
+<div class="container">
+  <h3>TICKET #<%= @ticket.id %> - <%= @ticket.subject %></h3>
+  
+  <div class="group">
+    <p class="group-label">STATUS</p>
+    <p class="group-data status"><%= @ticket.status.capitalize %></p>
+  </div>
+  <div class="group">
+    <p class="group-label">REQUESTER</p>
+    <p class="group-data">Ervin Chua</p>
+  </div>
+  <div class="group">
+    <p class="group-label">DESCRIPTION</p>
+    <p class="group-data"><%= @ticket.description %></p>
+  </div>
+
+  <div class="link">
+    <%= link_to "Back to ticket list", root_path %>
+  </div>
+</div>
