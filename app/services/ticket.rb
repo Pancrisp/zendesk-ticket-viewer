@@ -10,17 +10,13 @@ class Ticket
 
   def self.all
     response = Request.tickets
-    tickets = response.fetch('tickets', []).map { |ticket| Ticket.new(ticket) }
+    tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     [ tickets, response[:errors] ]
   end
 
   def self.find(id)
     response = Request.ticket(id)
     Ticket.new(response['ticket'])
-  end
-
-  def self.paginate(page, per_page)
-
   end
 
   def initialize(args = {})

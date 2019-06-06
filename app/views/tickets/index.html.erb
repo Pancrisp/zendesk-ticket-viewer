@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Your Tickets</h1>
+  <% if @errors %>
+    <%= @errors[:message] %>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>ID</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td>
+            <div class="status"><%= ticket.status.capitalize %></div>
+          </td>
+          <td>#<%= ticket.id %></td>
+          <td><%= link_to ticket.subject, ticket_path(ticket.id) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
