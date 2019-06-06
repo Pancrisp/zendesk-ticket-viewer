@@ -10,7 +10,9 @@ class Ticket
 
   def self.all
     response = Request.tickets
-    tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
+    if response['tickets']
+      tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
+    end
     [ tickets, response[:errors] ]
   end
 

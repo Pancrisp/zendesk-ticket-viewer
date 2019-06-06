@@ -1,7 +1,8 @@
 <div class="container">
   <h2>Your Tickets</h1>
   <% if @errors %>
-    <%= @errors[:message] %>
+    <p>Error: <%= @errors[:message] %></p> 
+    <p>Oi, no sneaky beaky!</p>
   <% else %>
     <table>
       <thead>
