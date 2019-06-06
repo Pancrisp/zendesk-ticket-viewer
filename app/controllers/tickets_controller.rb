@@ -5,5 +5,6 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+    @user = User.find(381228056034)
   end
 end
