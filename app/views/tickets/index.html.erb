@@ -24,5 +24,14 @@
       <% end %>
       </tbody>
     </table>
+
+    <div class="link">
+    <% if @prev %>
+      <%= link_to "Previous", root_path(page: @prev[:page], per_page: @prev[:per_page]) %>
+    <% end %>
+    <% if @next %>
+      <%= link_to "Next", root_path(page: @next[:page], per_page: @next[:per_page]) %>
+    <% end %>
+    </div>
   <% end %>
 </div>
