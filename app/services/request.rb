@@ -2,18 +2,8 @@ class Request
   class << self
     BASE_URI = 'https://sparktrail.zendesk.com/api/v2/'
 
-    def tickets
-      response, status = fetch_data("tickets.json")
-      status == 200 ? response : errors(response)
-    end
-
-    def ticket(id)
-      response, status = fetch_data("tickets/#{id}.json")
-      status == 200 ? response : errors(response)
-    end
-
-    def find_user(id)
-      response, status = fetch_data("users/#{id}.json")
+    def search(endpoint)
+      response, status = fetch_data(endpoint)
       status == 200 ? response : errors(response)
     end
     

@@ -9,7 +9,7 @@ class Ticket
                 :description
 
   def self.all
-    response = Request.tickets
+    response = Request.search("tickets.json")
     if response['tickets']
       tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     end
@@ -17,7 +17,7 @@ class Ticket
   end
 
   def self.find(id)
-    response = Request.ticket(id)
+    response = Request.search("tickets/#{id}.json")
     Ticket.new(response['ticket'])
   end
 

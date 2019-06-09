@@ -2,7 +2,7 @@ class User
   attr_accessor :name
 
   def self.find(id)
-    response = Request.find_user(id)
+    response = Request.search("users/#{id}.json")
     User.new(response['user'])
   end
 
