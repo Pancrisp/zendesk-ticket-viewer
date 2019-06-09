@@ -26,11 +26,11 @@ class Request
       RestClient::Resource.new(
         BASE_URI,
         # uncomment these to test error handling for API authentication
-        # :user => 'abc',
-        # :password => '123',
-        :user => Rails.application.credentials.zendesk[:username],
-        :password => Rails.application.credentials.zendesk[:password],
-        :headers => { params: { per_page: 25 } }
+        # user: 'abc',
+        # password: '123',
+        user: Rails.application.credentials.zendesk[:username],
+        password: Rails.application.credentials.zendesk[:password],
+        headers: { params: { per_page: 25 } }
       )
     end
   end
