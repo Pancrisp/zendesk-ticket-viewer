@@ -1,6 +1,9 @@
 class TicketsController < ApplicationController
   def index
-    @tickets, @errors = Ticket.all
+    @tickets, @errors = Ticket.all(
+      :page => params[:page],
+      :per_page => params[:per_page]
+    )
   end
 
   def show

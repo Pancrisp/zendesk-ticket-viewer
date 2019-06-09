@@ -2,8 +2,8 @@ class Request
   class << self
     BASE_URI = 'https://sparktrail.zendesk.com/api/v2/'
 
-    def search(endpoint)
-      response, status = fetch_data(endpoint)
+    def search(endpoint, query = {})
+      response, status = fetch_data(endpoint, query)
       status == 200 ? response : errors(response)
     end
     
@@ -13,7 +13,9 @@ class Request
       response.merge(error)
     end
 
-    def fetch_data(path)
+    def fetch_data(endpoint, query = {})
+      query_string = query.map { |k, v| "#{k}=#{v}" }.join('&')
+      path = query.empty? ? endpoint : "#{endpoint}?#{query_string}"
       response = tickets_api[path].get
       [JSON.parse(response), response.code]
     rescue RestClient::Exception => err

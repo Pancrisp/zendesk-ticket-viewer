@@ -8,8 +8,8 @@ class Ticket
                 :subject,
                 :description
 
-  def self.all
-    response = Request.search("tickets.json")
+  def self.all(query = {})
+    response = Request.search('tickets.json', query)
     if response['tickets']
       tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     end
