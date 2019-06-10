@@ -1,24 +1,49 @@
-# README
+# Zendesk Ticket Viewer - Internship Coding Challenge 2019
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Applicant name: Ervin Chua
 
-Things you may want to cover:
+Developed and tested on `ruby-2.6.3` and `rails 5.2.3`
 
-* Ruby version
+## Setup and installation
 
-* System dependencies
+Clone the repository and run bundle install
 
-* Configuration
+```
+$ git clone git@github.com:Pancrisp/zendesk-ticket-viewer.git
+$ cd zendesk-ticket-viewer && bundle install
+```
 
-* Database creation
+**Zendesk API credentials**
 
-* Database initialization
+The project uses encrypted credentials to store login details for accessing Zendesk APIs.
+So the app should work without needing to configure ENV vars after cloning the repository.
 
-* How to run the test suite
+## Project navigation
 
-* Services (job queues, cache servers, search engines, etc.)
+These directories contain the code I've written for the coding challenge.
+No need to look through the entire Rails project directory looking for my work.
+Let me spare you from that misery, it's the least I could do. 🤪
 
-* Deployment instructions
+```
+zendesk-ticket-viewer
+├── app
+│    ├── assets
+│    ├── controllers
+│    ├── services
+│    └── views
+└── spec
+     ├── controllers
+     ├── requests
+     └── services
+```
 
-* ...
+## Checklist
+
+- [x] Connect to Zendesk API
+- [x] Request the tickets for your account
+- [x] Display them in a list, paginate when more than 25 are returned
+- [x] Display individual ticket details
+- [x] Error handling
+- [x] Tests
+
+## Notes
