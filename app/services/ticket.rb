@@ -4,7 +4,6 @@ class Ticket
   attr_accessor :id,
                 :requester_id,
                 :assignee_id,
-                :priority,
                 :status,
                 :subject,
                 :description
