@@ -8,7 +8,7 @@ class Ticket
                 :description
 
   def self.all(query = {})
-    response = Request.search('tickets.json', query)
+    response = Zendesk.search('tickets.json', query)
     if response['tickets']
       tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     end
@@ -25,7 +25,7 @@ class Ticket
   end
 
   def self.find(id)
-    response = Request.search("tickets/#{id}.json")
+    response = Zendesk.search("tickets/#{id}.json")
     ticket = Ticket.new(response['ticket'])
     requester_id = response['ticket']['requester_id']
     assignee_id = response['ticket']['assignee_id']

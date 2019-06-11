@@ -2,7 +2,7 @@ class User
   attr_accessor :name
 
   def self.find(id)
-    response = Request.search("users/#{id}.json")
+    response = Zendesk.search("users/#{id}.json")
     User.new(response['user'])
   end
 

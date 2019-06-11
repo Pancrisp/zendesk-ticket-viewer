@@ -1,4 +1,4 @@
-class Request
+class Zendesk
   class << self
     BASE_URI = 'https://sparktrail.zendesk.com/api/v2/'
 
@@ -16,13 +16,13 @@ class Request
     def fetch_data(endpoint, query = {})
       query_string = query.map { |k, v| "#{k}=#{v}" }.join('&')
       path = query.empty? ? endpoint : "#{endpoint}?#{query_string}"
-      response = tickets_api[path].get
+      response = zendesk_api[path].get
       [JSON.parse(response), response.code]
     rescue RestClient::Exception => err
       err.response
     end
 
-    def tickets_api
+    def zendesk_api
       RestClient::Resource.new(
         BASE_URI,
         # uncomment these to test error handling for API authentication
