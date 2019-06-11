@@ -1,8 +1,7 @@
-require 'rest-client'
-require 'json'
-
 class Ticket
   attr_accessor :id,
+                :requester_id,
+                :assignee_id,
                 :priority,
                 :status,
                 :subject,
@@ -13,36 +12,37 @@ class Ticket
     if response['tickets']
       tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     end
+
     if response['previous_page']
-      prev_pg = split_endpoint(response['previous_page'])
+      prev_pg = param_values(response['previous_page'])
     end
+
     if response['next_page']
-      next_pg = split_endpoint(response['next_page'])
+      next_pg = param_values(response['next_page'])
     end
+    
     [ tickets, response[:errors], prev_pg, next_pg ]
   end
 
   def self.find(id)
     response = Request.search("tickets/#{id}.json")
-    Ticket.new(response['ticket'])
+    ticket = Ticket.new(response['ticket'])
+    requester_id = response['ticket']['requester_id']
+    assignee_id = response['ticket']['assignee_id']
+    [ ticket, requester_id, assignee_id ]
   end
 
-  def self.split_endpoint(endpoint)
-    # https://sparktrail.zendesk.com/api/v2/tickets.json?page=2&per_page=25
-    # >>>
-    # https://sparktrail.zendesk.com/api/v2/tickets.json
-    # page=2&per_page=25
-    # >>>
-    # page=2
-    # per_page=25
-    # >>>
-    # 2
-    # 25
+  def self.param_values(endpoint)
+    # Retrieve parameter values from URLs with query strings
     query = endpoint.split('?').last.split('&')
-    { page: query[0].split('=').last, per_page: query[1].split('=').last }
+    page = query[0].split('=').last
+    per_page = query[1].split('=').last
+    { page: page, per_page: per_page }
   end
 
   def initialize(args = {})
+    # Set each key value pair from the JSON response
+    # as an instance variable on the Ticket object
     args.each do |key, value|
       attr_name = key.to_s
       send("#{attr_name}=", value) if respond_to?("#{attr_name}=")

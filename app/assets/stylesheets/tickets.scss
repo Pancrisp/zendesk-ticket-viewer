@@ -48,3 +48,19 @@ td {
   color: #fff;
   background-color: hsl(16, 100%, 50%);
 }
+
+.indiv-status {
+  max-width: 48px;
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  background-color: hsl(16, 100%, 50%);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}

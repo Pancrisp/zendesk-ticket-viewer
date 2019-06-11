@@ -1,13 +1,18 @@
 <div class="container">
   <h3>TICKET #<%= @ticket.id %> - <%= @ticket.subject %></h3>
-  
-  <div class="group">
-    <p class="group-label">STATUS</p>
-    <p class="group-data status"><%= @ticket.status.capitalize %></p>
-  </div>
-  <div class="group">
-    <p class="group-label">REQUESTER</p>
-    <p class="group-data"><%= @user.name %></p>
+  <div class="flex">
+    <div class="group flex-1">
+      <p class="group-label">STATUS</p>
+      <p class="group-data indiv-status"><%= @ticket.status.capitalize %></p>
+    </div>
+    <div class="group flex-1">
+      <p class="group-label">REQUESTER</p>
+      <p class="group-data"><%= @requester.name %></p>
+    </div>
+    <div class="group flex-1">
+      <p class="group-label">ASSIGNEE</p>
+      <p class="group-data"><%= @assignee.name %></p>
+    </div>
   </div>
   <div class="group">
     <p class="group-label">DESCRIPTION</p>

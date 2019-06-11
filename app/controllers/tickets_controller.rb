@@ -7,7 +7,8 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
-    @user = User.find(381228056034)
+    @ticket, requester_id, assignee_id = Ticket.find(params[:id])
+    @requester = User.find(requester_id)
+    @assignee = User.find(assignee_id)
   end
 end
