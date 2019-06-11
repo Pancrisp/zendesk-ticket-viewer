@@ -11,7 +11,6 @@ module Adapter
       def errors(res)
         response = JSON.parse(res)
         error = { errors: { message: response['error'] } }
-        response.merge(error)
       end
 
       def fetch_data(endpoint, query = {})
