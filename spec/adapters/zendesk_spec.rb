@@ -6,7 +6,7 @@ RSpec.describe 'Zendesk Adapter' do
   let(:uri) { 'https://sparktrail.zendesk.com/api/v2/tickets/2.json?per_page=25' }
   
   describe '.search' do
-    context 'authenticated'
+    context 'authenticated' do
       before { stub_request(:get, uri).to_return(status: 200, body: ticket_json) }
 
       it 'returns a JSON object' do
