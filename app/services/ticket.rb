@@ -1,4 +1,6 @@
 class Ticket
+  include Adapter
+
   attr_accessor :id,
                 :requester_id,
                 :assignee_id,
@@ -8,7 +10,7 @@ class Ticket
                 :description
 
   def self.all(query = {})
-    response = Zendesk.search('tickets.json', query)
+    response = Adapter::Zendesk.search('tickets.json', query)
     if response['tickets']
       tickets = response.fetch('tickets').map { |ticket| Ticket.new(ticket) }
     end
@@ -25,7 +27,7 @@ class Ticket
   end
 
   def self.find(id)
-    response = Zendesk.search("tickets/#{id}.json")
+    response = Adapter::Zendesk.search("tickets/#{id}.json")
     ticket = Ticket.new(response['ticket'])
     requester_id = response['ticket']['requester_id']
     assignee_id = response['ticket']['assignee_id']

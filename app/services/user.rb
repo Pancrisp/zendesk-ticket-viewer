@@ -1,8 +1,10 @@
 class User
+  include Adapter
+
   attr_accessor :name
 
   def self.find(id)
-    response = Zendesk.search("users/#{id}.json")
+    response = Adapter::Zendesk.search("users/#{id}.json")
     User.new(response['user'])
   end
 
