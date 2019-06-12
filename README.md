@@ -22,8 +22,7 @@ rails s
 
 **Zendesk API credentials**
 
-The project uses encrypted credentials to store login details for accessing Zendesk APIs.
-So the app should work out of the box without needing to configure ENV vars after cloning the repository.
+The project uses encrypted credentials to store login details for accessing Zendesk APIs. I would never do this under normal circumstances, but I've included the decryption key in the repo for the purposes of this coding challenge. So the app should work out of the box without needing to configure ENV vars after cloning the repository.
 
 **Zendesk Adapter**
 
