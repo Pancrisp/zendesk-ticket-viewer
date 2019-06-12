@@ -11,14 +11,14 @@ RSpec.describe 'Zendesk Adapter' do
 
       it 'returns a JSON object' do
         response = Adapter::Zendesk.search('tickets/2.json')
-          expect(response['ticket']).to include_json(
-            id: 2,
-            subject: "hello",
-            description: "123",
-            status: "open",
-            requester_id: 381228056034,
-            assignee_id: 381228056034
-          )
+        expect(response['ticket']).to include_json(
+          id: 2,
+          subject: "hello",
+          description: "123",
+          status: "open",
+          requester_id: 381228056034,
+          assignee_id: 381228056034
+        )
       end
     end
 
@@ -50,11 +50,12 @@ RSpec.describe 'Zendesk Adapter' do
   end
 
   describe '.fetch_data' do
+    let(:response) { Adapter::Zendesk.fetch_data('tickets/2.json') }
+
     context 'authenticated' do
       before { stub_request(:get, uri).to_return(status: 200, body: ticket_json) }
 
       it 'returns a JSON object' do
-        response = Adapter::Zendesk.fetch_data('tickets/2.json')
         expect(response.first['ticket']).to include_json(
           id: 2,
           subject: "hello",
@@ -66,7 +67,6 @@ RSpec.describe 'Zendesk Adapter' do
       end
 
       it 'returns 200 ok' do
-        response = Adapter::Zendesk.fetch_data('tickets/2.json')
         expect(response.last).to eql(200)
       end
     end
@@ -75,14 +75,12 @@ RSpec.describe 'Zendesk Adapter' do
       before { stub_request(:get, uri).to_return(status: 401, body: unauthenticated_json) }
       
       it 'returns could not authenticate message' do
-        response = Adapter::Zendesk.fetch_data('tickets/2.json')
         expect(JSON.parse(response)).to include_json(
           error: "Couldn't authenticate you"
         )
       end
 
       it 'returns 401 authentication error' do
-        response = Adapter::Zendesk.fetch_data('tickets/2.json')
         expect(response.code).to eql(401)
       end
     end

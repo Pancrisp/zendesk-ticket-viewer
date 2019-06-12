@@ -1,0 +1,30 @@
+{
+  "tickets": [
+    {
+      "id": 2,
+      "subject": "hello",
+      "description": "123",
+      "status": "open",
+      "requester_id": 381228056034,
+      "assignee_id": 381228056034
+    },
+    {
+      "id": 3,
+      "subject": "world",
+      "description": "456",
+      "status": "open",
+      "requester_id": 381228056034,
+      "assignee_id": 381228056034
+    },
+    {
+      "id": 4,
+      "subject": "code",
+      "description": "789",
+      "status": "open",
+      "requester_id": 381228056034,
+      "assignee_id": 381228056034
+    }
+  ],
+  "next_page": "https://sparktrail.zendesk.com/api/v2/tickets.json?page=3&per_page=25",
+  "previous_page": null
+}
